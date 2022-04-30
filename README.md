@@ -24,7 +24,7 @@ directory = "/path/to/water_analysis/vendor"
 ```
 and build the program.
 
-Then the executable file will be created at  `/path/to/water_analysis/target/release/water_analysis`. One could use `cargo build --release` to enhance the performance of this program.
+Then an temporary executable file will be created at  `/path/to/water_analysis/target/debug/water_analysis`. One could use `cargo build --release` to compile a release version at `/path/to/water_analysis/target/release/water_analysis`, which will greatly enhance the performance of the program.
 
 # Usage
 Input file can be:
