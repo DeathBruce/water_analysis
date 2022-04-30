@@ -65,6 +65,7 @@ into the qe.pos file (in VASP units Angstrom).
   - [rdf](#rdf)
 - [Convert task](#convert-task)
   - [xdatcar_joint](#xdatcar-joint)
+  - [qe2xdatcar](#qe2xdatcar)
 
 One basic example of using this program should be like:
 ```bash
