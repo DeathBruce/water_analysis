@@ -38,6 +38,24 @@ Input file can be:
 
 Note that element name is different for different format (for lammps usually is "1" "2").
 
+For now, to use qe file, one needs to add an title like:
+```
+    system
+
+    1.00
+
+      a 0 0
+
+      0 b 0
+
+      0 0 c
+
+    A B C D
+
+    1 2 3 4
+```
+into the qe.pos file (in VASP units Angstrom).
+
 
 Task:
 - [Normal task](#normal-task)
@@ -91,4 +109,10 @@ execfile --in ./a.xdatcar --infmt vasp/xdatcar --frameopt "1 10000 10" --task rd
 Joint two different `XDATCAR` file in one file. An example looks like:
 ```bash
 execfile --in ./first.xdatcar --infmt vasp/xdatcar --task convert --taskopt ./second.xdatcar --out ./XDATCAR
+```
+
+## qe2xdatcar
+Convert file in 'qe/traj' to 'vasp/xdatcar'. An example looks like:
+```bash
+execfile --in ./qe.pos --infmt qe/traj --task convert --taskopt qe2xdatcar --out ./some.xdatcar
 ```
