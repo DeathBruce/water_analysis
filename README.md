@@ -59,10 +59,11 @@ into the qe.pos file (in VASP units Angstrom).
 
 ## Task:
 - [Normal task](#normal-task)
-  - [cov](#cov)
-  - [hb](#hb)
-  - [msd](#msd)
-  - [rdf](#rdf)
+  - [covalence bond](#cov)
+  - [average hydrogen bond](#hb)
+  - [mean squared displayment](#msd)
+  - [radial distribution function](#rdf)
+  - [tetrahedral order parameter](#q)
 - [Convert task](#convert-task)
   - [xdatcar_joint](#xdatcar-joint)
   - [qe2xdatcar](#qe2xdatcar)
@@ -101,6 +102,11 @@ Compute radial distribution function (rdf) for specific elements. An typical *--
 ```bash
 execfile --in ./a.xdatcar --infmt vasp/xdatcar --frameopt "1 10000 10" --task rdf --taskopt "O O 6 240" --out ./rdf.dat
 ```
+## q
+Comput tetrahedral order parameter for pure water. An typical example looks like:
+```bash
+execfile --in ./a.xdatcar --infmt vasp/xdatcar --frameopt "1 10000 10" --task q --out ./rdf.dat
+```
 
 
 # Convert task
@@ -117,3 +123,8 @@ Convert file in 'qe/traj' to 'vasp/xdatcar'. An example looks like:
 ```bash
 execfile --in ./qe.pos --infmt qe/traj --task convert --taskopt qe2xdatcar --out ./some.xdatcar
 ```
+
+
+# To be done
+
+ * Dpgen will generate lots of lammps file at `01.model.devi`, how to load these files at one time like vmd?
