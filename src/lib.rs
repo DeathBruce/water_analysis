@@ -180,7 +180,7 @@ pub fn run(config: ArgMatches) -> Result<(), Box<dyn Error>> {
             _ => panic!("can't read filetype, please check your filetype!"),
         };
         //println!("{:?}", system);
-    
+        println!("Total {:?} frames was loaded.", system.len());
         match task as &str {
             "rdf" => {
                 let mut taskopt: Vec<&str> = config.value_of("taskopt").unwrap()
@@ -199,6 +199,7 @@ pub fn run(config: ArgMatches) -> Result<(), Box<dyn Error>> {
             }
             "q" => {
                 println!("Running task, please wait...");
+                task::q::q(&mut system, config.value_of("outputfile").unwrap())?;
             }
             "msd" => {
                 let mut taskopt: Vec<&str> = config.value_of("taskopt").unwrap()
@@ -217,7 +218,10 @@ pub fn run(config: ArgMatches) -> Result<(), Box<dyn Error>> {
             _ => panic!("unknown task, please check your task!"),
         };
     } else {
-        match &config.value_of("taskopt").unwrap() as &str {
+        let mut taskopt: Vec<&str> = config.value_of("taskopt").unwrap()
+                  .split_whitespace().collect();
+
+        match taskopt[0] as &str {
             "qe2xdatcar" => {
                 let mut taskopt: Vec<&str> = config.value_of("taskopt").unwrap()
                   .split_whitespace().collect();

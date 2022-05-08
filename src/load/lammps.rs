@@ -62,17 +62,17 @@ pub fn read_lammpstrj(filename: &str, frameopt: &Vec<&str>) -> Result<Vec<Frame>
     let step  : i32 = frameopt[2].parse::<i32>().unwrap();
     let mut i: i32 = 0 + (start-1)*(9+natom);
     let mut system: Vec<Frame> = vec![];
-    let mut frame_idx: i32 = 0;
+    let mut frame_idx: i32 = start;
     while i < lines.len().try_into().unwrap() {
         let mut line: &str = lines[(i as usize)];
-
+        //println!("{}", i);
         if frame_idx > stop {
             break;
         }
 
         if line == "ITEM: TIMESTEP" {  //  seems like unnecessary
-            // println!("ITEM: TIMESTEP");
-            frame_idx += 1;
+            //println!("i is {}, ITEM: TIMESTEP", i);
+            //frame_idx += 1;
             i += 9;
         } else {
             let mut coord: Vec<Atom> = vec![];
@@ -97,8 +97,10 @@ pub fn read_lammpstrj(filename: &str, frameopt: &Vec<&str>) -> Result<Vec<Frame>
                 natom: natom,
                 atom: coord,
             });
-            i += step * (9+natom);
-            frame_idx += 1;
+            //println!("end of a frame {}", i);
+            i += (natom + 9) * step - 9 ;
+            frame_idx += step;
+            //println!("jumped to {}", i);
         }
     }
     // println!("{:?}", system);

@@ -8,8 +8,8 @@ use std::io::Write;
 pub fn joint(input1: &str, input2: &Vec<&str>, output: &str) -> Result<(), Box<dyn Error>> {
     
     let contents1 = fs::read_to_string(input1)?;
-    if input2.len() != 1 {panic!("xdatcar_joint only needs one arg, which is the filename to use")}
-    let contents2 = fs::read_to_string(input2[0])?;
+    if input2.len() != 2 {panic!("taskopt for convert xdatcar_joint should be like \"xdatcar_joint ./some.xdatcar\"")}
+    let contents2 = fs::read_to_string(input2[1])?;
     let mut o = fs::File::create(&output).unwrap();
     let mut frame_idx: i32 = 1;
 

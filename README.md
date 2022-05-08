@@ -1,4 +1,4 @@
-<span style="font-size:larger;">Water_analysis 0.1 Manual</span>
+<span style="font-size:larger;">Water_analysis 0.2 Manual</span>
 ========
 This program is mainly used for water analysis. For now, trajectories in LAMMPS, VASP and QE are supported.
 

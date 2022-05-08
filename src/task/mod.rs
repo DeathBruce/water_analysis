@@ -49,7 +49,7 @@ pub fn get_distance_pbc(a: [f64; 3], b: [f64; 3], cell: &Vec<f64>) -> f64 {
 }
 
 /// Compute the angle of H-O-H, using the law of cosines.
-/// 
+/// Return the angle in Rad.
 /// considering the periodic boundary condition.
 pub fn get_angle(a: [f64; 3], o: [f64; 3], b: [f64; 3], cell: &Vec<f64>) -> f64 {
     let r_oa = get_distance_pbc(o, a, &cell);
@@ -57,7 +57,7 @@ pub fn get_angle(a: [f64; 3], o: [f64; 3], b: [f64; 3], cell: &Vec<f64>) -> f64 
     let r_ab = get_distance_pbc(a, b, &cell);
     let rad = ((r_oa.powi(2) + r_ob.powi(2) - r_ab.powi(2)) / (2.0 * r_oa * r_ob)).acos();
     let deg = 180.0 * rad / PI;
-    deg
+    rad
 }
 
 pub fn unwrap(system: &Vec<Frame>) -> Result<(), Box<dyn Error>> {

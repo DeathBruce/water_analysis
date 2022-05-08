@@ -8,6 +8,7 @@
 
 use crate::task::{get_angle, get_distance_pbc};
 use crate::{Atom, Frame};
+use std::f64::consts::PI;
 use std::error::Error;
 use std::fs;
 use std::fs::OpenOptions;
@@ -76,7 +77,7 @@ pub fn cov_oneframe(frame: &Frame, output: &str) -> Result<(), Box<dyn Error>> {
             atom_o.coordination,
             neighbour[1].coordination,
             &cell,
-        );
+        ) * 180.0 / PI;
         o.write((format!("{:.8}", cov_ang) + "\n").as_bytes())
             .expect("write cov_angle failed");
         /*

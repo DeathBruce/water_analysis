@@ -3,6 +3,7 @@
 use crate::task::cov::find_cov_oneatom;
 use crate::task::{get_angle, get_distance_pbc};
 use crate::{Atom, Frame};
+use std::f64::consts::PI;
 use std::error::Error;
 use std::fs;
 use std::io::Write;
@@ -45,7 +46,7 @@ pub fn compute_HBs_oneframe(frame: &Frame) -> Result<f64, Box<dyn Error>> {
                         atom_o2.coordination,
                         atom_h.coordination,
                         &cell,
-                    ) < 30.0
+                    ) < (PI / 6.0)
                     {
                         //  numb_accept += 1;
                         numb_HB += 1;
@@ -59,7 +60,7 @@ pub fn compute_HBs_oneframe(frame: &Frame) -> Result<f64, Box<dyn Error>> {
                         atom_o1.coordination,
                         atom_h.coordination,
                         &cell,
-                    ) < 30.0
+                    ) < (PI / 6.0)
                     {
                         //  numb_donate += 1;
                         numb_HB += 1;

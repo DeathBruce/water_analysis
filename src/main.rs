@@ -8,7 +8,7 @@ use clap::{Arg, App, SubCommand};
 
 fn main() {
     let config = App::new("Water_analysis")
-                      .version("0.1")
+                      .version("0.2.0")
                       .author("Weiyu Li <liwy@shanghaitech.edu.cn>")
                       .about("Does some water analysis")
                       .arg(Arg::with_name("inputfile")
