@@ -69,10 +69,10 @@ pub fn q_oneframe(frame: &Frame, output: &str) -> Result<(f64), Box<dyn Error>> 
                     &cell,
                 );
                 answer -= 0.375 * ( tmp_rad.cos() + 1.0/3.0 ).powi(2);
-                o.write( (format!("{:.8}", answer) + "\n").as_bytes() )
-                    .expect("write q to file failed");
             }
         }
+        o.write( (format!("{:.8}", answer) + "\n").as_bytes() )
+            .expect("write q to file failed");
         tmp_q += answer;
     }
 
